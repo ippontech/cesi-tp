@@ -13,6 +13,12 @@ For all modules below, here are the first steps:
 ```bash
 git clone https://github.com/ippontech/cesi-tp.git
 ```
+6) Install Terraform (https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli):
+```bash
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+```
 
 ## Module 1 - AWS Cloud Concepts
 
