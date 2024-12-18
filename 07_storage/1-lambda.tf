@@ -20,3 +20,22 @@ resource "aws_lambda_function" "move_s3_object_lambda" {
     Name = "${var.project}-move-s3-object"
   }
 }
+
+resource "aws_s3_bucket_notification" "bucket_notification" {
+  bucket = data.aws_s3_bucket.source_bucket.id
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.move_s3_object_lambda.arn
+    events              = ["s3:ObjectCreated:*"]
+  }
+
+  depends_on = [aws_lambda_permission.allow_bucket]
+}
+
+resource "aws_lambda_permission" "allow_bucket" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.move_s3_object_lambda.arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = data.aws_s3_bucket.source_bucket.arn
+}
