@@ -15,3 +15,4 @@ docker container run \
   -e SPRING_PROFILES_ACTIVE="prod,api-docs" \
   -p 80:8080 \
   hufon/cpe:latest
+

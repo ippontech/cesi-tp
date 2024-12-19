@@ -38,4 +38,8 @@ module "databases" {
   region  = var.region
   project = var.project
   vpc_id  = module.network.vpc_id
+  subnet_a_id = module.network.subnet_a_id
+  subnet_b_id = module.network.subnet_b_id
+  public_subnet_a_id = module.network.public_subnet_a_id
 }
+
